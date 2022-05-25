@@ -17,6 +17,3 @@ enact necessary Response
 4. Gabriel Silvestre - Tester - https://github.com/69Gabriel
 5. Bryan Vargas - Tester - https://github.com/BVargs26
 6. Hans Uriel Serojales - Tester - https://github.com/hansoy27
-
-## Release and Deployment/Implementation
-Project still in Development. keep in Touch for further updates.
