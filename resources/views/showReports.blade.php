@@ -407,14 +407,14 @@
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            list of reports
+            list of reports <br>
             @foreach($reportlist as $reports)
                 Id: {{$reports->id}} <br>
                 Name of Submitter: {{$reports->name}} <br>
                 Email Address: {{$reports->email_address}} <br>
                 Contact Number: {{$reports->contact_number}} <br>
                 Report Description: {{$reports->reportdescription}} <br>
-                Created At: {{$reports->created_at}} <br>
+                Created At: {{$reports->created_at}} <br><br>
             @endforeach
         </div>
     </div>
