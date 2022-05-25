@@ -407,12 +407,12 @@
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <form action="{{route('submit')}}" method="post">
+            <form action="{{route('submit')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
             <label>Name</label><br>
                 <input type="text" name="name" placeholder="Full Name"> <br>
                 <label>Contact Number</label><br>
-                <input type="number" name="Contact Number" placeholder="Contact Number"><br>
+                <input type="number" name="ContactNumber" placeholder="Contact Number"><br>
                 <label>Email Address</label><br>
                 <input type="text" name="email_address" placeholder="Email Address"><br>
                 <label>Upload Photo with ID</label><br>
@@ -421,6 +421,9 @@
                 <textarea name="reportDescription" cols="30" rows="10"></textarea><br>
                 <button>Submit Report</button>
             </form>
+            @foreach($errors->all() as $error)
+                {{$error}}
+            @endforeach
         </div>
     </div>
 </body>

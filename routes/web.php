@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WebBlotterControl;
+use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[WebBlotterControl::class,'index']);
-
-Route::post('/submit',[WebBlotterControl::class,'submit'])->name('submit');
-Route::get('/show',[WebBlotterControl::class,'showReports']);
+Route::post('/submit',[ReportsController::class,'store'])->name('submit');
+Route::get('/show',[ReportsController::class,'index'])->name('show');
