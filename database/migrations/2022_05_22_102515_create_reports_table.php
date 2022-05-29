@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email_address');
             $table->integer('contact_number');
             $table->string('reportdescription');
+            $table->string('optionalAttachments');
+            $table->string("photoID_path");
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\report;
+use Illuminate\Support\Facades\Log;
 
 class ReportsController extends Controller
 {
@@ -37,20 +38,31 @@ class ReportsController extends Controller
     {
         $request->validate([
             'photo'=>'required|mimes:jpg,png,jpeg|max:2000',
+            'optionalAttachments'=>'max:10000',
             'name'=>'required',
             'ContactNumber'=>'required',
             'email_address'=>'required',
             'reportDescription'=>'required'
         ]);
     
-        $report=new report;
-        $report->name=$request->name;
-        $report->email_address=$request->email_address;
-        $report->contact_number=$request->ContactNumber;
-        $report->reportdescription=$request->reportDescription;
-        $report->photoID_path=$request->photo->store('uploads');
-        
-        $report->save();
+
+        // task for tomm: log incoming request and check optionalAttachments
+        Log::info($request);
+
+        // $report=new report;
+        // $report->name=$request->name;
+        // $report->email_address=$request->email_address;
+        // $report->contact_number=$request->ContactNumber;
+        // $report->reportdescription=$request->reportDescription;
+        // $report->photoID_path=$request->photo->store('uploads');
+        // if (empty($request->optionalAttachments)){
+        //     $report->optionalAttachments="No Other Attachments";
+        // }if($request->hasFile('optionalAttachments')){
+        //     foreach($request->optionalAttachments as $file){
+        //         $report->optionalAttachments=$file->store('uploads');
+        //     }
+        // }
+        // $report->save();
         return redirect('/');
     }
 
