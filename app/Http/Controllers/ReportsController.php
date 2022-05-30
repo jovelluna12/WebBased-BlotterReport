@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\report;
+use App\Models\multipleAttachments;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
 {
@@ -15,7 +17,7 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        return view('showReports',['reportlist'=>report::all()]);
+        return view('showReports', ['reportlist' => report::all()]);
     }
 
     /**
@@ -37,32 +39,45 @@ class ReportsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'photo'=>'required|mimes:jpg,png,jpeg|max:2000',
-            'optionalAttachments'=>'max:10000',
-            'name'=>'required',
-            'ContactNumber'=>'required',
-            'email_address'=>'required',
-            'reportDescription'=>'required'
+            'photo' => 'required|mimes:jpg,png,jpeg,bmp|max:2000',
+            'optionalAttachments' => 'max:10000',
+            'name' => 'required',
+            'ContactNumber' => 'required',
+            'email_address' => 'required',
+            'reportDescription' => 'required'
         ]);
-    
 
-        // task for tomm: log incoming request and check optionalAttachments
-        Log::info($request);
 
-        // $report=new report;
-        // $report->name=$request->name;
-        // $report->email_address=$request->email_address;
-        // $report->contact_number=$request->ContactNumber;
-        // $report->reportdescription=$request->reportDescription;
-        // $report->photoID_path=$request->photo->store('uploads');
-        // if (empty($request->optionalAttachments)){
-        //     $report->optionalAttachments="No Other Attachments";
-        // }if($request->hasFile('optionalAttachments')){
-        //     foreach($request->optionalAttachments as $file){
-        //         $report->optionalAttachments=$file->store('uploads');
-        //     }
-        // }
-        // $report->save();
+        $id1=rand(1,getrandmax());
+        $id = DB::table('reports')->pluck('id');
+        foreach ($id as $id){
+            if($id1==$id){
+                $id1=rand(1,getrandmax());
+            }
+        }
+        
+
+        $report = new report;
+        $report->id=$id1;
+        $report->name = $request->name;
+        $report->email_address = $request->email_address;
+        $report->contact_number = $request->ContactNumber;
+        $report->reportdescription = $request->reportDescription;
+        $report->photoID_path = $request->photo->store('uploads/id/'.$request->name);
+
+        $report->save();
+
+        if ($request->hasFile('optionalAttachments')) {
+            foreach ($request->file('optionalAttachments') as $key=>$file) {
+                $attach = new multipleAttachments;
+                $file_path = $file->store('uploads/OptionalAttachments/'.$request->name);
+                $attach->senderID=$id1;
+                $attach->attachment=$file_path;
+                $attach->save();
+            }
+        }
+
+
         return redirect('/');
     }
 

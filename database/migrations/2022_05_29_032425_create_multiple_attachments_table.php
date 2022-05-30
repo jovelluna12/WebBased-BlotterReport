@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,14 +12,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
-
-            $table->unsignedbigInteger('id');
-            $table->primary('id');
-            $table->string('name');
-            $table->string('email_address');
-            $table->string('contact_number');
-            $table->string('reportdescription');
+        Schema::dropIfExists('multiple_attachments');
+        Schema::create('multiple_attachments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('senderID');
+            $table->foreign('senderID')->references('id')->on('reports');
+            $table->string('attachment');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('multiple_attachments');
     }
 };

@@ -418,7 +418,7 @@
                 <label>Upload Photo with ID</label><br>
                 <input type="file" name="photo"><br>
                 <label>Upload Any other Useful Attachments (Optional)</label><br>
-                <input type="file" name="optionalAttachments" multiple><br>
+                <input type="file" name="optionalAttachments[]" multiple><br>
                 <label>Report Description</label><br>
                 <textarea name="reportDescription" cols="30" rows="10"></textarea><br>
                 <button>Submit Report</button>
