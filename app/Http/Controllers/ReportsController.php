@@ -68,7 +68,7 @@ class ReportsController extends Controller
         $report->save();
 
         if ($request->hasFile('optionalAttachments')) {
-            foreach ($request->file('optionalAttachments') as $key=>$file) {
+            foreach ($request->file('optionalAttachments') as $file) {
                 $attach = new multipleAttachments;
                 $file_path = $file->store('uploads/OptionalAttachments/'.$request->name);
                 $attach->senderID=$id1;
