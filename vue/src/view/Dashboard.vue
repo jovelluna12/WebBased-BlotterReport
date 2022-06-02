@@ -5,7 +5,7 @@
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <a href="#">
             <span class="sr-only">Workflow</span>
-            <lebal Class="text-2xl">Welcome to the BlotterReport Website</lebal>
+            <lebal Class="text-2xl">BlotterReport Website</lebal>
           </a>
         </div>     
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
@@ -14,8 +14,52 @@
         </div>
       </div>
     </div>
-    <div class="container mx-auto bg-white">
-  <lebal >h</lebal>
+
+    <div class="flex justify mx-auto bg-white place-content-around my-9 ">
+        <div>
+          <img class="w-80 h-40 rounded-full  ">
+        </div>
+        <div>
+          <p>“To my mind, a picture should be something pleasant, cheerful, and pretty, yes pretty!</p>
+          <p>There are too many unpleasant things in life as it is without creating still more of them.”</p>
+          <p> ― Pierre-Auguste Renoir</p>
+        </div>
+    </div>
+
+    <div class="flex justify-center mx-auto h-80 bg-white border-2 ">
+        <div>
+          <p class="mt-2 text-center text-sm text-gray-600">hello</p>
+        </div>
+    </div>
+
+    <label>News</label>
+    <div class="flex justify-center w-full h-auto bg-white border-4 my-4">
+           <ul class="divide-y divide-gray-100 w-full border-1 my-3">
+              <li class="grid grid-cols-2 m-2 rounded-md border-2 p-10 hover:bg-blue-100 hover:text-blue-200">
+                  <div>
+                    <img class="w-40 h-20 border-2 ">
+                  </div>
+                  <div>
+                    <p>1</p>
+                  </div>
+              </li>
+              <li class="grid grid-cols-2 m-2 rounded-md border-2 p-10 hover:bg-blue-100 hover:text-blue-200">
+                  <div>
+                    <img class="w-40 h-20 border-2 ">
+                  </div>
+                  <div>
+                    <p>2</p>
+                  </div>
+              </li>
+              <li class="grid grid-cols-2 m-2 rounded-md border-2 p-10 hover:bg-blue-100 hover:text-blue-200">
+                  <div>
+                    <img class="w-40 h-20 border-2 ">
+                  </div>
+                  <div>
+                    <p>3</p>
+                  </div>
+              </li>
+          </ul>
     </div>
   </Popover>
 </template>
@@ -25,25 +69,4 @@
   export default{
      name: "Dashboard"
      }
-</script>
-
-<script setup>
-import { Popover, PopoverButton, PopoverGroup, PopoverPanel } from '@headlessui/vue'
-import {
-  BookmarkAltIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  CursorClickIcon,
-  MenuIcon,
-  PhoneIcon,
-  PlayIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
-  SupportIcon,
-  ViewGridIcon,
-  XIcon,
-} from '@heroicons/vue/outline'
-import { ChevronDownIcon } from '@heroicons/vue/solid'
-
-
 </script>
