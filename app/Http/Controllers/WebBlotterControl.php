@@ -11,6 +11,5 @@ class WebBlotterControl extends Controller
         return view('welcome');
     }
     
-  
-
+    
 }

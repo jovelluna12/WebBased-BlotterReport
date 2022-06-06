@@ -407,18 +407,16 @@
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <b>list of reports</b> <br><br>
-            @foreach($reportlist as $reports)
-            <br><br>
-            Report Id: {{$reports->id}} <br>
-            Name of Submitter: {{$reports->name}} <br>
-            <!-- Email Address: {{$reports->email_address}} <br>
-            Contact Number: {{$reports->contact_number}} <br>
-            Report Description: {{$reports->reportdescription}} <br>
-            Created At: {{$reports->created_at}} <br>
-            <br><br>
-            <img src="{{url('storage/'.$reports->photoID_path)}}" alt="Photo-with-Id"> -->
-            <a href="/viewreport/{{$reports->id}}">Open Report</a>
+            inside view report
+            <br>
+            @foreach($report as $info)
+            Report ID: {{$info->id}} <br>   
+            Name of Submitter: {{$info->name}} <br>
+            Email Address: {{$info->email_address}} <br>
+            Contact Number: {{$info->contact_number}} <br>
+            Report Description: {{$info->reportdescription}} <br>
+            Created at: {{$info->created_at}} <br>
+            <img src="{{url('storage/'.$info->photoID_path)}}" alt="Photo-with-Id">
             @endforeach
         </div>
     </div>

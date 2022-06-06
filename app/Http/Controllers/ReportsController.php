@@ -48,31 +48,31 @@ class ReportsController extends Controller
         ]);
 
 
-        $id1=rand(1,getrandmax());
+        $id1 = rand(1, getrandmax());
         $id = DB::table('reports')->pluck('id');
-        foreach ($id as $id){
-            if($id1==$id){
-                $id1=rand(1,getrandmax());
+        foreach ($id as $id) {
+            if ($id1 == $id) {
+                $id1 = rand(1, getrandmax());
             }
         }
-        
+
 
         $report = new report;
-        $report->id=$id1;
+        $report->id = $id1;
         $report->name = $request->name;
         $report->email_address = $request->email_address;
         $report->contact_number = $request->ContactNumber;
         $report->reportdescription = $request->reportDescription;
-        $report->photoID_path = $request->photo->store('uploads/id/'.$request->name);
+        $report->photoID_path = $request->photo->store('uploads/id/' . $request->name, 'public');
 
         $report->save();
 
         if ($request->hasFile('optionalAttachments')) {
             foreach ($request->file('optionalAttachments') as $file) {
                 $attach = new multipleAttachments;
-                $file_path = $file->store('uploads/OptionalAttachments/'.$request->name);
-                $attach->senderID=$id1;
-                $attach->attachment=$file_path;
+                $file_path = $file->store('uploads/OptionalAttachments/' . $request->name, 'public');
+                $attach->senderID = $id1;
+                $attach->attachment = $file_path;
                 $attach->save();
             }
         }
@@ -89,7 +89,9 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
-        //
+        $report = DB::table('reports')->select('*')->where('id', '=', $id)->get();
+    
+        return view('Viewreport',['report'=>$report]);
     }
 
     /**
@@ -100,7 +102,6 @@ class ReportsController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
