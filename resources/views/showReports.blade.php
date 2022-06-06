@@ -412,12 +412,7 @@
             <br><br>
             Report Id: {{$reports->id}} <br>
             Name of Submitter: {{$reports->name}} <br>
-            <!-- Email Address: {{$reports->email_address}} <br>
-            Contact Number: {{$reports->contact_number}} <br>
-            Report Description: {{$reports->reportdescription}} <br>
-            Created At: {{$reports->created_at}} <br>
-            <br><br>
-            <img src="{{url('storage/'.$reports->photoID_path)}}" alt="Photo-with-Id"> -->
+
             <a href="/viewreport/{{$reports->id}}">Open Report</a>
             @endforeach
         </div>

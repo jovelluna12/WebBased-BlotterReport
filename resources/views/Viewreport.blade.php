@@ -418,6 +418,13 @@
             Created at: {{$info->created_at}} <br>
             <img src="{{url('storage/'.$info->photoID_path)}}" alt="Photo-with-Id">
             @endforeach
+            <br>
+            Additional Attachments
+            <br>
+            @foreach($attachments as $attach)
+                
+                <img src="{{url('storage/'.$attach->attachment)}}" alt="attachments"><br>
+            @endforeach
         </div>
     </div>
 </body>

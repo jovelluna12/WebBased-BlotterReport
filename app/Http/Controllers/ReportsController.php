@@ -40,7 +40,7 @@ class ReportsController extends Controller
     {
         $request->validate([
             'photo' => 'required|mimes:jpg,png,jpeg,bmp|max:2000',
-            'optionalAttachments' => 'max:10000',
+            'optionalAttachments' => 'required|mimes:jpg,png,jpeg,bmp|max:10000',
             'name' => 'required',
             'ContactNumber' => 'required',
             'email_address' => 'required',
@@ -89,9 +89,17 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
-        $report = DB::table('reports')->select('*')->where('id', '=', $id)->get();
-    
-        return view('Viewreport',['report'=>$report]);
+        $report = DB::table('reports')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->get();
+        $attachments=DB::table('multiple_attachments')
+            ->select('attachment')
+            ->where('senderId','=',$id)
+            ->get();
+
+            return view('Viewreport', ['report' => $report,'attachments'=>$attachments]);
+        
     }
 
     /**
