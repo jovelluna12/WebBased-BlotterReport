@@ -412,7 +412,7 @@
             <br><br>
             Report Id: {{$reports->id}} <br>
             Name of Submitter: {{$reports->name}} <br>
-            <a href="/viewreport/{{$reports->id}}">Open Report</a>
+            <a href="/assessreport/{{$reports->id}}">Open Report</a>
             @endforeach
         </div>
     </div>

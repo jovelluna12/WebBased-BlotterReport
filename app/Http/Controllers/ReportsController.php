@@ -15,8 +15,9 @@ class ReportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type)
     {
+
         return view('showReports', ['reportlist' => report::all()]);
     }
 
@@ -110,6 +111,16 @@ class ReportsController extends Controller
      */
     public function edit($id)
     {
+        $report = DB::table('reports')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->get();
+        $attachments=DB::table('multiple_attachments')
+            ->select('attachment')
+            ->where('senderId','=',$id)
+            ->get();
+
+        return view('assessreport', ['report' => $report,'attachments'=>$attachments]);
     }
 
     /**
