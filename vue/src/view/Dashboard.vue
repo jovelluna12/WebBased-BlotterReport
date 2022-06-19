@@ -17,7 +17,7 @@
 
     <div class="flex justify mx-auto bg-white place-content-around my-9 ">
         <div>
-          <img class="w-80 h-40 rounded-full  ">
+          <img class="w-full h-32 rounded-full" src="C:/Users/Auyao/Desktop/IPT/WebBased-BlotterReport/vue/PIC/logo.png">
         </div>
         <div>
           <p>“To my mind, a picture should be something pleasant, cheerful, and pretty, yes pretty!</p>
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="flex justify-center mx-auto h-80 bg-white border-2 ">
+    <div class="flex justify-center mx-auto h-80 py-52 bg-white border-2 ">
         <div>
           <p class="mt-2 text-center text-sm text-gray-600">hello</p>
         </div>

@@ -4,7 +4,7 @@ import Login from '../view/Login.vue';
 import Register from '../view/Register.vue';
 import Report from '../view/Report.vue';
 import Profile from '../view/Profile.vue';
-
+import Read from '../view/Read.vue';
 
 const routes = [
     {
@@ -35,6 +35,11 @@ const routes = [
         path:'/Profile',
         name: 'Profile',
         component: Profile
+    },
+    {
+        path:'/Read',
+        name: 'Read',
+        component: Read
     },
 ];
 

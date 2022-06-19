@@ -1,69 +1,50 @@
 <template>
-      <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Register</h2>
-      </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
-        <input type="hidden" name="remember" value="true" />
-        <div class="rounded-md shadow-sm -space-y-px">
-          
-          <div>
-            <p>Name:</p>
-            <label for="Name" class="sr-only">Full Name:</label>
-            <input id="Name" name="Name" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Name" />
-          </div>
-
-          <div>
-            <p>Email:</p>
-            <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" name="email" type="email" autocomplete="email" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address" />
-          </div>
-
-          <div>
-            <p>Password:</p>
-            <label for="password" class="sr-only">Password</label>
-            <input id="password" name="password" type="password" autocomplete="current-password" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
-          </div>
-          
-          <div>
-            <p>Confirm Password:</p>
-            <label for="con-password" class="sr-only">Confirm Password</label>
-            <input id="con-password" name="con-password" type="password" autocomplete="current-password" required="" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Confirm Password" />
-          </div>
-
-
-        <div>
-            <p>Phone Number:</p>
-            <label for="Pnumber" class="sr-only">Full Name:</label>
-            <input id="Pnumber" name="Pnumber" type="number" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Phone Number" />
-        </div>
-
-        <div>
-            <p>Address:</p>
-            <label for="Address" class="sr-only">Full Name:</label>
-            <input id="Address" name="Address" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Address" />
-        </div> 
-
-        <div class="flex justify-center">
-          <div class="mb-3 w-96">
-            <label for="formFile" class="form-label inline-block mb-2 text-gray-700">National ID:</label>
-            <input class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile">
-          </div>
+ <Popover class="relative bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+        <div class="flex justify-start lg:w-0 lg:flex-1">
+          <a href="#">
+            <span class="sr-only">Workflow</span>
+            <lebal Class="text-2xl">BlotterReport Website</lebal>
+          </a>
+        </div>     
+        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"> Sign in </a>
+          <a href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"> Sign up </a>
         </div>
       </div>
-
-        <div>
-          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              <LockClosedIcon class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
-            </span>
-            Sign in
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
+
+    <div class="fixed top-25 left-0 h-screen w-40 bg-white">
+        <img class="inline-block h-32 w-32 m-4 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+        <p class="text-center">Name</p>
+
+        <a href="#" class="ml-3 whitespace-nowrap inline-flex fixed bottom-20 px-9 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Logout</a>
+        <a href="#" class="ml-3 whitespace-nowrap inline-flex fixed bottom-[124px] px-10 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Sitting</a>
+        <a href="#" class="ml-3 whitespace-nowrap inline-flex fixed bottom-[168px] px-10 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Report</a>
+    </div>
+
+        <div class="fixed top-25 left-[160px] w-screen px-2 py-2 h-screen bg-white">
+          <div class="py-1 px-8 w-10/12 h-1/2 border-4 bg-white rounded-xl shadow-lg space-y-2 sm:space-y-0 sm:space-x-6">
+          <img class="inline-block h-20 w-auto m-4 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+            <div class="text-center space-y-2 sm:text-left">
+              <div class="space-y-0.5">
+                <p class="text-lg text-black font-semibold">
+                  Jan Night Lance
+                </p>
+                <p class="text-slate-500 font-medium">
+                  Report Title
+              </p>
+            </div>
+            <div class="py-8 px-1 w-full h-1/2 border-4 bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-top sm:space-y-0 sm:space-x-6">
+            <p>hello</p>
+            </div>
+            <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Check</button>
+          </div>
+        </div>
+      </div>
+  
+ </Popover>
 </template>
 
 <script>
