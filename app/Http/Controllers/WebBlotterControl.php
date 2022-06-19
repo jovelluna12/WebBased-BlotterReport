@@ -21,7 +21,12 @@ class WebBlotterControl extends Controller
         Mail::to($email."@email.com")
         ->send(new Update($name));
         
-        return redirect('/');
+        return redirect('/sendreport');
         
+    }
+    public function redirecttologin(){
+        return response()->json([
+            'message'=>'Unauthenticated'
+]);
     }
 }
