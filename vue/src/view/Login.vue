@@ -38,7 +38,7 @@
         </div>
                 <p class="mt-2 text-center text-sm text-gray-600">
           Or
-          {{ ' ' }}
+         
           <a href="Register" class="font-medium text-indigo-600 hover:text-indigo-500"> Register </a>
         </p>
       </form>
@@ -48,8 +48,17 @@
 
 <script>
  export default{
-     name: "Login"
+ name: "Login"
      }
+     import { useRouter } from "vue-router";
+    
+    const router = useRouter();
+
+     const user = {
+  email: "",
+  password: "",
+  
+};
 </script>
 
 <style scoped>

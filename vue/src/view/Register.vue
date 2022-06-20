@@ -69,7 +69,18 @@
 <script>
  export default{
      name: "Register"
-     }
+ }
+    import { useRouter } from "vue-router";
+
+    const router = useRouter();
+const user = {
+  name: "",
+  email: "",
+  password: "",
+  conpassword: "",
+  Pnumber:"",
+  Address:""
+};
 </script>
 
 <style scoped>

@@ -2,12 +2,11 @@ import { createStore } from 'vuex'
 
 // Create a new store instance.
 const store = createStore({
-  state () {
-    user:{
-    data:{name:'Jan Arnold'}
-    token:null
+  state: {
+    user: {
+      data: {},
+      token: sessionStorage.getItem("TOKEN"),
     }
-    }
-  },
-)
+  }
+});
 export default store;
