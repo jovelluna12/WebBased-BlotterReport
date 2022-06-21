@@ -13,14 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('reports', function (Blueprint $table) {
 
             $table->unsignedbigInteger('id');
+            $table->unsignedBigInteger('Reporter_id');
             $table->primary('id');
-            $table->string('name');
-            $table->string('email_address');
-            $table->string('contact_number');
+            $table->foreign('Reporter_id')->references('id')->on('users');
+            // $table->foreign('name')->references('name')->on('users');
+            // $table->('email_address');
+            // $table->string('contact_number');
             $table->string('reportdescription');
+            $table->string('status');
             $table->timestamps();
         });
     }

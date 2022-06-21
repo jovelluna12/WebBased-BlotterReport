@@ -6,27 +6,65 @@ use Illuminate\Support\Facades\Log;
 use App\Models\report;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Update;
-
+use Illuminate\Support\Facades\DB;
 class WebBlotterControl extends Controller
 {
     public function index(){
         return view('welcome');
     }
     public function ViewasAssessor(){
-        return view('editReports', ['reportlist' => report::all()]);   
-    }
-    public function sendMail($name,$email){
-        Log::info($name);
-        Log::info($email);
-        Mail::to($email."@email.com")
-        ->send(new Update($name));
+        $report = DB::table('reports')
+            ->select('*')
+            ->where('status', '=', 'Unassessed')
+            ->get();
         
-        return redirect('/sendreport');
+        return view('editReports', ['reportlist' => $report]);   
+    }
+    public function sendMail(Request $request,$name,$email,$id){
+
+        $update=$request->updateDescription;
+    
+        DB::table('reports')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->update(['status'=>'Update Requested']);
+            
+
+        Mail::to($email."@email.com")
+        ->send(new Update($name,$id,$update));
+        
+        // return redirect('/sendreport');
+        return response()->json([
+            'message'=>'Update Request Sent to Sender',
+            'update message'=>$update
+]);
         
     }
     public function redirecttologin(){
-        return response()->json([
-            'message'=>'Unauthenticated'
-]);
+        return view('login');
+//         return response()->json([
+//             'message'=>'Redirect to Login'
+// ]);
+            
+    }
+    public function redirecttohome(){
+        return view('home');
+    }
+    public function assessed($id){
+
+        DB::table('reports')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->update(['status'=>'Assessed']);
+            
+        return redirect('/assess');
+    }
+    public function reject($id){
+        DB::table('reports')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->update(['status'=>'Rejected']);
+            
+        return redirect('/assess');
     }
 }

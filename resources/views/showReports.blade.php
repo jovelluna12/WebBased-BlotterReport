@@ -407,12 +407,12 @@
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <b>list of reports</b> <br><br>
+            <b>list of reports already assessed by the Assessor</b> <br><br>
             @foreach($reportlist as $reports)
             <br><br>
-            Report Id: {{$reports->id}} <br>
-            Name of Submitter: {{$reports->name}} <br>
-            <a href="/viewreport/{{$reports->id}}">Open Report</a>
+            Report Id: {{$reports->Reporter_id}} <br>
+            Report Description: {{$reports->reportdescription}} <br>
+            <a href="/viewreport/{{$reports->Reporter_id}}">Open Report</a>
             @endforeach
         </div>
     </div>

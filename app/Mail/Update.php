@@ -11,15 +11,18 @@ class Update extends Mailable
 {
     use Queueable, SerializesModels;
     public $name;   
-
+    public $id;
+    public $update;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name,$id,$update)
     {
         $this->name=$name;
+        $this->id=$id;
+        $this->update=$update;
     }
 
     /**

@@ -407,22 +407,8 @@
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            inside view report
-            <br>
-            @foreach($report as $info)
-            Report ID: {{$info->Reporter_id}} <br>   
-            Description: {{$info->reportdescription}} <br>
-    
-            Created at: {{$info->created_at}} <br>
-            <img src="{{url('storage/'.$info->photoID_path)}}" alt="Photo-with-Id">
-            @endforeach
-            <br>
-            Additional Attachments
-            <br>
-            @foreach($attachments as $attach)
-                
-                <img src="{{url('storage/'.$attach->attachment)}}" alt="attachments"><br>
-            @endforeach
+            
+            
         </div>
     </div>
 </body>

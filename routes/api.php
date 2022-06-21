@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authenticate;
+use App\Http\Controllers\ReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,9 @@ use App\Http\Controllers\authenticate;
 
 Route::post('/register',[authenticate::class,'register']);
 Route::post('/login',[authenticate::class,'login']);
-Route::post('/me',[authenticate::class,'me'])->middleware('auth:sanctum');
-
+Route::post('/submit',[ReportsController::class,'store'])->middleware('reportValidate');
+Route::get('/assessed',[ReportsController::class,'index']);
+Route::post('/update',[ReportsController::class,'update']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -410,12 +410,12 @@
             <b>list of reports</b> <br><br>
             @foreach($reportlist as $reports)
             <br><br>
-            Report Id: {{$reports->id}} <br>
-            Name of Submitter: {{$reports->name}} <br>
-            <a href="/assessreport/{{$reports->id}}">Open Report</a>
+            Report ID {{$reports->id}} <br>
+            Sender Id: {{$reports->Reporter_id}} <br>
+            Report Description: {{$reports->reportdescription}} <br>
+            <a href="/assessreport/{{$reports->id}}/{{$reports->Reporter_id}}">Open Report</a>
             @endforeach
         </div>
     </div>
 </body>
-
 </html>

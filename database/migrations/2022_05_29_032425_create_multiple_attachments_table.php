@@ -15,8 +15,10 @@ return new class extends Migration
         Schema::dropIfExists('multiple_attachments');
         Schema::create('multiple_attachments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedbigInteger('reportid');
             $table->unsignedBigInteger('senderID');
-            $table->foreign('senderID')->references('id')->on('reports');
+            $table->foreign('senderID')->references('Reporter_id')->on('reports');
+            $table->foreign('reportid')->references('id')->on('reports');
             $table->string('attachment');
             $table->timestamps();
         });

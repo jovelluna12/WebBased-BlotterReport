@@ -409,26 +409,37 @@
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             inside view report to Assess
             <br>
+            Report ID: {{$id}}
             @foreach($report as $info)
-            Report ID: {{$info->id}} <br>   
+            <br>
+            Reporter ID: {{$info->Reporter_id}} <br>
             Name of Submitter: {{$info->name}} <br>
-            Email Address: {{$info->email_address}} <br>
-            Contact Number: {{$info->contact_number}} <br>
+            Email Address: {{$info->email}} <br>
+
             Report Description: {{$info->reportdescription}} <br>
             Created at: {{$info->created_at}} <br>
-            <a href="/sendMail/{{$info->name}}/{{$info->email_address}}">Ask to Update</a><br>
+            <form action="/sendMail/{{$info->name}}/{{$info->email}}/{{$id}}" method="get">
+                {{csrf_field()}}
+                <label>Tell the User what you wish to be Updated</label><br>
+                <textarea name="updateDescription" cols="30" rows="10"></textarea><br>
+                <button>Ask to Update</button>
+            </form>
+
+            <!-- <a href="/sendMail/{{$info->name}}/{{$info->email}}/{{$id}}">Ask to Update</a>   -->
+            <a href="/MarkAssessed/{{$id}}">Mark as Assessed</a><br>
+            <a href="/MarkReject/{{$id}}">Mark as Rejected</a><br>
             <img src="{{url('storage/'.$info->photoID_path)}}" alt="Photo-with-Id">
             @endforeach
             <br>
             Additional Attachments
             <br>
             @foreach($attachments as $attach)
-                
-                <img src="{{url('storage/'.$attach->attachment)}}" alt="attachments"><br>
-                
+
+            <img src="{{url('storage/'.$attach->attachment)}}" alt="attachments"><br>
+
             @endforeach
 
-            
+
         </div>
     </div>
 </body>

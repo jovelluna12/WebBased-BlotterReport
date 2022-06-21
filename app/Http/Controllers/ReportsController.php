@@ -15,10 +15,15 @@ class ReportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($type)
+    public function index(Request $request)
     {
 
-        return view('showReports', ['reportlist' => report::all()]);
+        $report = DB::table('reports')
+            ->select('*')
+            ->where('status', '=', 'Assessed')
+            ->get();
+
+        return response()->json($report);
     }
 
     /**
@@ -39,16 +44,10 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'photo' => 'required|mimes:jpg,png,jpeg,bmp|max:2000',
-            'optionalAttachments' => 'required|mimes:jpg,png,jpeg,bmp|max:10000',
-            'name' => 'required',
-            'ContactNumber' => 'required',
-            'email_address' => 'required',
-            'reportDescription' => 'required'
-        ]);
+        Log::info($request);
 
 
+        Log::info("also here");
         $id1 = rand(1, getrandmax());
         $id = DB::table('reports')->pluck('id');
         foreach ($id as $id) {
@@ -60,26 +59,29 @@ class ReportsController extends Controller
 
         $report = new report;
         $report->id = $id1;
-        $report->name = $request->name;
-        $report->email_address = $request->email_address;
-        $report->contact_number = $request->ContactNumber;
+        $report->Reporter_id = $request->Reporter_id;
+        $report->status = "Unassessed";
         $report->reportdescription = $request->reportDescription;
-        $report->photoID_path = $request->photo->store('uploads/id/' . $request->name, 'public');
 
+        $report->photoID_path = $request->file('photo')->store('uploads/id/' . $request->name, 'public');
         $report->save();
 
         if ($request->hasFile('optionalAttachments')) {
+
             foreach ($request->file('optionalAttachments') as $file) {
+
+                Log::info('uhh');
                 $attach = new multipleAttachments;
                 $file_path = $file->store('uploads/OptionalAttachments/' . $request->name, 'public');
-                $attach->senderID = $id1;
+                $attach->senderID = $request->Reporter_id;
+                $attach->reportid = $id1;
                 $attach->attachment = $file_path;
                 $attach->save();
             }
         }
-
-
-        return redirect('/');
+        return response()->json([
+            'message' => 'Report Posted Successfully'
+        ]);
     }
 
     /**
@@ -94,13 +96,12 @@ class ReportsController extends Controller
             ->select('*')
             ->where('id', '=', $id)
             ->get();
-        $attachments=DB::table('multiple_attachments')
+        $attachments = DB::table('multiple_attachments')
             ->select('attachment')
-            ->where('senderId','=',$id)
+            ->where('reportid', '=', $id)
             ->get();
 
-            return view('Viewreport', ['report' => $report,'attachments'=>$attachments]);
-        
+        return view('Viewreport', ['report' => $report, 'attachments' => $attachments]);
     }
 
     /**
@@ -109,18 +110,23 @@ class ReportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $userid)
     {
+
         $report = DB::table('reports')
+            ->join('users', 'users.id', '=', 'reports.Reporter_id')
             ->select('*')
-            ->where('id', '=', $id)
-            ->get();
-        $attachments=DB::table('multiple_attachments')
-            ->select('attachment')
-            ->where('senderId','=',$id)
+            ->where('reports.id', '=', $id)
             ->get();
 
-        return view('assessreport', ['report' => $report,'attachments'=>$attachments]);
+
+
+        $attachments = DB::table('multiple_attachments')
+            ->select('*')
+            ->where('senderId', '=', $userid)
+            ->get();
+
+        return view('assessreport', ['report' => $report, 'attachments' => $attachments, 'id' => $id]);
     }
 
     /**
@@ -130,9 +136,49 @@ class ReportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        if ($request->hasFile('photo')) {
+            $photoID_path = $request->file('photo')->store('uploads/id/' . $request->name, 'public');
+            DB::table('reports')
+                ->select('*')
+                ->where('id', '=', $id)
+                ->update(['photoID_path' => $photoID_path]);
+        }
+        $reportdescription = $request->reportDescription;
+        if (isset($reportdescription)) {
+            $id = $request->id;
+            DB::table('reports')
+                ->select('*')
+                ->where('id', '=', $id)
+                ->update(['reportdescription' => $request->reportDescription]);
+        }
+        if ($request->hasFile('optionalAttachments')) {
+            $id1 = rand(1, getrandmax());
+            $id = DB::table('reports')->pluck('id');
+            foreach ($id as $id) {
+                if ($id1 == $id) {
+                    $id1 = rand(1, getrandmax());
+                }
+            }
+            foreach ($request->file('optionalAttachments') as $file) {
+
+                $attach = new multipleAttachments;
+                $file_path = $file->store('uploads/OptionalAttachments/' . $request->name, 'public');
+                $attach->senderID = $request->Reporter_id;
+                $attach->reportid = $id1;
+                $attach->attachment = $file_path;
+            }
+        }
+        DB::table('reports')
+            ->select('*')
+            ->where('id', '=', $id)
+            ->update(['status' => 'Updated by User']);
+
+        return response()->json([
+            'message' => 'Report has been Updated'
+        ]);
     }
 
     /**

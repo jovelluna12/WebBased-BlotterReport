@@ -4,7 +4,7 @@
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Register</h2>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" method="POST">
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
           
@@ -47,18 +47,18 @@
 
         <div class="flex justify-center">
           <div class="mb-3 w-96">
-            <label for="formFile" class="form-label inline-block mb-2 text-gray-700">National ID:</label>
+            <label for="formFile" class="form-label inline-block mb-2 text-gray-700">Photo with ID:</label>
             <input class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" id="formFile">
           </div>
         </div>
       </div>
 
         <div>
-          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick="sendJSON()">
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <LockClosedIcon class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
             </span>
-            Sign in
+            Sign Up
           </button>
         </div>
       </form>
@@ -66,10 +66,44 @@
   </div>
 </template>
 
-<script>
+<!-- <script>
  export default{
      name: "Register"
      }
+</script> -->
+<script>
+  function sendJSON(){
+              
+            let result = document.querySelector('.email-address');
+            let name = document.querySelector('.name');
+            let email = document.querySelector('.password');
+              
+            // Creating a XHR object
+            let xhr = new XMLHttpRequest();
+            let url = "http://127.0.0.1:8000/api/register";
+       
+            // open a connection
+            xhr.open("POST", url, true);
+ 
+            // Set the request header i.e. which type of content you are sending
+            xhr.setRequestHeader("Content-Type", "application/json");
+ 
+            // Create a state change callback
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                  console.log('sent')
+                    // Print received data from server
+                    //result.innerHTML = this.responseText;
+ 
+                }
+            };
+ 
+            // Converting JSON data to string
+            var data = JSON.stringify({ "name": name.value, "email": email.value });
+ 
+            // Sending data with the request
+            xhr.send(data);
+        }
 </script>
 
 <style scoped>
