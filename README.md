@@ -10,7 +10,7 @@ enact necessary Response
 2. Anyone with a certain issue that needs to be reported.
 
 
-## Dev team
+## Team Members
 1. Jovel Christer Luna - Project Manager / Developer - https://github.com/jovelluna12
 2. Jan Arnold Uyao - Developer - https://github.com/UyaoJan
 3. Gabriel Silvestre - Tester - https://github.com/69Gabriel
