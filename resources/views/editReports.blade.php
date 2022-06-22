@@ -415,6 +415,14 @@
             Report Description: {{$reports->reportdescription}} <br>
             <a href="/assessreport/{{$reports->id}}/{{$reports->Reporter_id}}">Open Report</a>
             @endforeach
+            <br>
+            @foreach($updated as $updates)
+            <br>
+            Report ID {{$updates->id}} <br>
+            Sender Id: {{$updates->Reporter_id}} <br>
+            Report Description: {{$updates->reportdescription}} <br>
+            <a href="/assessreport/{{$updates->id}}/{{$updates->Reporter_id}}">Open Report</a>
+            @endforeach
         </div>
     </div>
 </body>

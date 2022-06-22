@@ -13,12 +13,15 @@ class WebBlotterControl extends Controller
         return view('welcome');
     }
     public function ViewasAssessor(){
-        $report = DB::table('reports')
-            ->select('*')
-            ->where('status', '=', 'Unassessed')
-            ->get();
-        
-        return view('editReports', ['reportlist' => $report]);   
+       $report=report::where('status','Unassessed')->get();
+       $updatedReports=report::where('status','Updated by User')->get();
+        // $report = DB::table('reports')
+        //     ->select('*')
+        //     ->where('status', '=', 'Unassessed')
+        //     ->where('status','=','Updated by User')
+        //     ->get();
+        //Log::info($report);
+        return view('editReports', ['reportlist' => $report,'updated'=>$updatedReports]);   
     }
     public function sendMail(Request $request,$name,$email,$id){
 
